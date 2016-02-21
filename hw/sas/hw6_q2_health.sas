@@ -72,7 +72,7 @@ run;
 
 proc varcomp data=nested1;
 class state	city household;                                                                                                                
-model index= state city(state);
+model index = state city(state);
 run;
 
 proc nested data=nested1;
