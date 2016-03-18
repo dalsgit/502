@@ -57,11 +57,6 @@ run;
 
 ods graphics on;                                                                                                                        
 ods html style=statistical sge=on;                                                                                                     
-proc plm restore=nested1;                                                                                                               
-lsmeans state / adjust=tukey plot=meanplot cl lines;                                                                                   
-lsmeans city(state) / adjust=tukey plot=meanplot cl lines;                                                                       
-ods exclude diffs diffplot;                                                                                                             
-run;
 
 /* MODEL 2 - ALL RANDOM */
 proc mixed data=nested1 covtest method=type3;
@@ -72,7 +67,7 @@ run;
 
 proc varcomp data=nested1;
 class state	city household;                                                                                                                
-model index = state city(state);
+model index= state city(state);
 run;
 
 proc nested data=nested1;
@@ -85,3 +80,4 @@ proc mixed data=nested1 covtest method=type3;
 class state	city household;                                                                                                                
 model index=state;
 random city(state);
+run;
